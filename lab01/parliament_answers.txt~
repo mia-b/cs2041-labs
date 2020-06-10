@@ -35,19 +35,19 @@ Q4 answer: egrep 'y( [A-Z]*)*:.*y,' parliament.txt
 5) Write an egrep command that will print all the lines in the file where the MP's name or the electorate
 ends in the letter 'y'.
 
-Q5 answer: egrep 'y( [A-Z]*):|y,' parliament.txt
+Q5 answer: egrep 'y( [A-Z]*)*:|y,' parliament.txt
 
 
 6) Write an egrep command to print all the lines in the file where there is any word in the
 MP's name or the electorate name that ends in ng.
 
-Q6 answer:
+Q6 answer: egrep 'ng[ :,]' parliament.txt
 
 
 7) Write an egrep command that will print all the lines in the file where the MP's
 surname (last name) both begins and ends with a vowel.
 
-Q7 answer:
+Q7 answer: egrep -i ' [aeiou][^ ]*[aeiou]( [A-Z]*)*:' parliament.txt
 
 
 8) Most electorate have names that are a single word, e.g. Warringah, Lyons & Grayndler.
