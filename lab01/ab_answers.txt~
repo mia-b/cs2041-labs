@@ -36,5 +36,5 @@ only the characters A and  B such that
 there are exactly n A's followed by
 exactly n B's and no other characters.
 
-Q4 answer: grep -P "^(A(?1)?B)$" input.txt
+Q4 answer: grep -R '^AA*B*B$' input.txt
 
