@@ -10,4 +10,7 @@ then
     exit 1
 fi
 
-yes $2 | head -n $1
+for ((i=0;i<$1;i++))
+do
+    echo $2
+done
