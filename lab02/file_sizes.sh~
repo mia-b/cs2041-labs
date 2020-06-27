@@ -1,0 +1,22 @@
+#!/bin/sh
+
+for file in *
+do
+    lines=`wc -l < $file`
+    
+    if [[ $lines -lt 10 ]]
+    then 
+        smol="$smol $file"
+    elif [[ $lines -lt 100 ]]
+    then
+        med="$med $file" 
+    else 
+        lg="$lg $file" 
+    fi
+    
+done
+
+echo "Small files:$smol"
+echo "Medium files:$med"
+echo "Large files:$lg"
+
