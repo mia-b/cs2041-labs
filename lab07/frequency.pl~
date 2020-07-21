@@ -1,0 +1,16 @@
+#!/usr/bin/perl -w
+
+
+foreach $file (glob "lyrics/*.txt") {
+    $artist = $file;
+    # replace .txt with nothing
+    $artist =~ s/\.txt$//;  
+    # replace anything before the first '/' which is inherently "lyrics"  
+    $artist =~ s/.*\///;
+    # replace '_' with ' '
+    $artist =~ s/_/ /g;
+    
+    # print "$artist\n"
+}
+
+
