@@ -1,0 +1,50 @@
+#!/usr/bin/perl -w
+
+foreach $file (glob "lyrics/*.txt") {
+    
+    # Extract Artist's Name
+    $artist = $file;
+    # replace .txt with nothing
+    $artist =~ s/\.txt$//;  
+    # replace anything before the first '/' which is inherently "lyrics"  
+    $artist =~ s/.*\///;
+    # replace '_' with ' '
+    $artist =~ s/_/ /g;
+    
+    open (FH, '<', $file) or die $!;
+    while ($line = <FH>) {
+        $line = lc $line;
+        foreach $word ($line =~ /[a-z]+/g) {
+            $word_count{$artist}{$word}++;
+            $total_words{$artist}++;
+        }
+    }
+    
+    close (FH);
+}
+
+foreach $file (@ARGV) {
+    
+    my %log_prob;
+
+    open (FH, '<', $file) or die $!;
+    while ($line = <FH>) {
+        $line = lc $line;
+        foreach $word ($line =~ /[a-z]+/g) {
+            foreach $artist (keys %word_count) {
+                my $occurence = $word_count{$artist}{$word} || 0;
+                my $total = $total_words{$artist};
+            
+                $log_prob{$artist} += log(($occurence + 1)/$total);
+            }
+        }
+    }
+    
+    close (FH);
+    
+    @sorted = sort{$log_prob{$b} <=> $log_prob{$a}} keys %log_prob;
+    
+    printf ("%s most resembles the work of %s (log-probability=%.1f)\n", $file, $sorted[0], $log_prob{$sorted[0]});
+}
+
+
