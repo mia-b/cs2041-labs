@@ -1,0 +1,6 @@
+#!/usr/bin/perl -w
+
+my @values = sort{$a <=> $b} @ARGV;
+#$median = @values/2;
+
+print "$values[(@values/2)]\n";
