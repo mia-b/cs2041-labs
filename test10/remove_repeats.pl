@@ -1,0 +1,14 @@
+#!/usr/bin/perl -w
+
+foreach $word (@ARGV) {
+    
+    if ($occured{$word}) {
+        next;
+    }
+    
+    $occured{$word} = 1;
+    print "$word ";
+    
+}
+
+print "\n";
